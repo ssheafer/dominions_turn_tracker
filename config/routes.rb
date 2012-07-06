@@ -1,4 +1,6 @@
 Dom3::Application.routes.draw do
+  resources :signups
+
   resources :games
 
   get "secret" => "home#secret", :as => "secret"

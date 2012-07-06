@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Game:</b>
+  <%= @signup.game_id %>
+</p>
+
+<p>
+  <b>Nation:</b>
+  <%= @signup.nation_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @signup.user_id %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @signup.password %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @signup.status %>
+</p>
+
+<p>
+  <b>Turn:</b>
+  <%= @signup.turn %>
+</p>
+
+
+<%= link_to 'Edit', edit_signup_path(@signup) %> |
+<%= link_to 'Back', signups_path %>

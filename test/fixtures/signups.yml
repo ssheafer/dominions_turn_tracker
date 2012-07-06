@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  game_id: 1
+  nation_id: 1
+  user_id: 1
+  password: false
+  status: MyString
+  turn: false
+
+two:
+  game_id: 1
+  nation_id: 1
+  user_id: 1
+  password: false
+  status: MyString
+  turn: false
