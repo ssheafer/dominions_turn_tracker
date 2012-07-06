@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @player.user_id %>
+</p>
+
+<p>
+  <b>Forum:</b>
+  <%= @player.forum_id %>
+</p>
+
+<p>
+  <b>Avatar:</b>
+  <%= @player.avatar %>
+</p>
+
+<p>
+  <b>Aim:</b>
+  <%= @player.aim %>
+</p>
+
+<p>
+  <b>Icq:</b>
+  <%= @player.icq %>
+</p>
+
+<p>
+  <b>Xfire:</b>
+  <%= @player.xfire %>
+</p>
+
+<p>
+  <b>Googletalk:</b>
+  <%= @player.googletalk %>
+</p>
+
+<p>
+  <b>Yahoo messenger:</b>
+  <%= @player.yahoo_messenger %>
+</p>
+
+<p>
+  <b>Steam:</b>
+  <%= @player.steam %>
+</p>
+
+<p>
+  <b>Msn messenger:</b>
+  <%= @player.msn_messenger %>
+</p>
+
+<p>
+  <b>Other:</b>
+  <%= @player.other %>
+</p>
+
+<p>
+  <b>Timezone:</b>
+  <%= @player.timezone %>
+</p>
+
+<p>
+  <b>Email pref:</b>
+  <%= @player.email_pref %>
+</p>
+
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %>

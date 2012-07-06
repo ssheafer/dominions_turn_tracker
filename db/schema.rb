@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706063659) do
+ActiveRecord::Schema.define(:version => 20120706140923) do
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,25 @@ ActiveRecord::Schema.define(:version => 20120706063659) do
     t.string   "map_download"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "host_id"
+  end
+
+  create_table "players", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "forum_id"
+    t.string   "avatar"
+    t.string   "aim"
+    t.string   "icq"
+    t.string   "xfire"
+    t.string   "googletalk"
+    t.string   "yahoo_messenger"
+    t.string   "steam"
+    t.string   "msn_messenger"
+    t.string   "other"
+    t.integer  "timezone"
+    t.boolean  "email_pref"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "signups", :force => true do |t|

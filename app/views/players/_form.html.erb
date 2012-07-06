@@ -1,0 +1,69 @@
+<%= form_for(@player) do |f| %>
+  <% if @player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+      <% @player.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :forum_id %><br />
+    <%= f.number_field :forum_id %>
+  </div>
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <%= f.text_field :avatar %>
+  </div>
+  <div class="field">
+    <%= f.label :aim %><br />
+    <%= f.text_field :aim %>
+  </div>
+  <div class="field">
+    <%= f.label :icq %><br />
+    <%= f.text_field :icq %>
+  </div>
+  <div class="field">
+    <%= f.label :xfire %><br />
+    <%= f.text_field :xfire %>
+  </div>
+  <div class="field">
+    <%= f.label :googletalk %><br />
+    <%= f.text_field :googletalk %>
+  </div>
+  <div class="field">
+    <%= f.label :yahoo_messenger %><br />
+    <%= f.text_field :yahoo_messenger %>
+  </div>
+  <div class="field">
+    <%= f.label :steam %><br />
+    <%= f.text_field :steam %>
+  </div>
+  <div class="field">
+    <%= f.label :msn_messenger %><br />
+    <%= f.text_field :msn_messenger %>
+  </div>
+  <div class="field">
+    <%= f.label :other %><br />
+    <%= f.text_field :other %>
+  </div>
+  <div class="field">
+    <%= f.label :timezone %><br />
+    <%= f.number_field :timezone %>
+  </div>
+  <div class="field">
+    <%= f.label :email_pref %><br />
+    <%= f.check_box :email_pref %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

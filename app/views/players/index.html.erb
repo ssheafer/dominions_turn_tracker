@@ -1,0 +1,47 @@
+<h1>Listing players</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Forum</th>
+    <th>Avatar</th>
+    <th>Aim</th>
+    <th>Icq</th>
+    <th>Xfire</th>
+    <th>Googletalk</th>
+    <th>Yahoo messenger</th>
+    <th>Steam</th>
+    <th>Msn messenger</th>
+    <th>Other</th>
+    <th>Timezone</th>
+    <th>Email pref</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @players.each do |player| %>
+  <tr>
+    <td><%= player.user_id %></td>
+    <td><%= player.forum_id %></td>
+    <td><%= player.avatar %></td>
+    <td><%= player.aim %></td>
+    <td><%= player.icq %></td>
+    <td><%= player.xfire %></td>
+    <td><%= player.googletalk %></td>
+    <td><%= player.yahoo_messenger %></td>
+    <td><%= player.steam %></td>
+    <td><%= player.msn_messenger %></td>
+    <td><%= player.other %></td>
+    <td><%= player.timezone %></td>
+    <td><%= player.email_pref %></td>
+    <td><%= link_to 'Show', player %></td>
+    <td><%= link_to 'Edit', edit_player_path(player) %></td>
+    <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Player', new_player_path %>

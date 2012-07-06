@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
 	validates_presence_of :username
 	validates_uniqueness_of :email
 	validates_uniqueness_of :username
+   has_one :player
   # attr_accessible :title, :body
 end

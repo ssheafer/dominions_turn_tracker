@@ -1,4 +1,5 @@
 class SignupsController < ApplicationController
+  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
   # GET /signups
   # GET /signups.json
   def index

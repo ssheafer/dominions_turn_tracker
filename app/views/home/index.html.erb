@@ -1,3 +1,46 @@
-<h1>Welcome</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p><%= link_to "Visit secret page", secret_path %></p>
+<h1>Listing games</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Server</th>
+    <th>Port</th>
+    <th>Status cd</th>
+    <th>Era cd</th>
+    <th>Provinces</th>
+    <th>Max players</th>
+    <th>Requires passwords</th>
+    <th>Timer</th>
+    <th>Turn number</th>
+    <th>Players remaining</th>
+    <th>Host time</th>
+    <th>Last poll</th>
+    <th>Message</th>
+    <th>Map preview</th>
+    <th>Map download</th>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= link_to game.name, game %></td>
+    <td><%= game.server %></td>
+    <td><%= game.port %></td>
+    <td><%= game.status_cd %></td>
+    <td><%= game.era_cd %></td>
+    <td><%= game.provinces %></td>
+    <td><%= game.max_players %></td>
+    <td><%= game.requires_passwords %></td>
+    <td><%= game.timer %></td>
+    <td><%= game.turn_number %></td>
+    <td><%= game.players_remaining %></td>
+    <td><%= game.host_time %></td>
+    <td><%= game.last_poll %></td>
+    <td><%= game.message %></td>
+    <td><%= game.map_preview %></td>
+    <td><%= game.map_download %></td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />

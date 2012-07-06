@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
   # GET /games
   # GET /games.json
   def index
