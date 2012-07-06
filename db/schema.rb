@@ -11,7 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704220459) do
+ActiveRecord::Schema.define(:version => 20120706055327) do
+
+  create_table "games", :force => true do |t|
+    t.string   "name"
+    t.string   "server"
+    t.integer  "port"
+    t.integer  "status_cd"
+    t.integer  "era_cd"
+    t.integer  "provinces"
+    t.integer  "max_players"
+    t.boolean  "requires_passwords"
+    t.string   "timer"
+    t.integer  "turn_number"
+    t.integer  "players_remaining"
+    t.datetime "host_time"
+    t.datetime "last_poll"
+    t.text     "message"
+    t.string   "map_preview"
+    t.string   "map_download"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",                        :null => false

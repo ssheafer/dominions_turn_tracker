@@ -1,0 +1,73 @@
+<%= form_for(@game) do |f| %>
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :server %><br />
+    <%= f.text_field :server %>
+  </div>
+  <div class="field">
+    <%= f.label :port %><br />
+    <%= f.number_field :port %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= select(:game, :status, Game.statuses.keys) %>
+  </div>
+  <div class="field">
+    <%= f.label :era %><br />
+    <%= select(:game, :era, Game.eras.keys) %>
+  </div>
+  <div class="field">
+    <%= f.label :provinces %><br />
+    <%= f.number_field :provinces %>
+  </div>
+  <div class="field">
+    <%= f.label :max_players %><br />
+    <%= f.number_field :max_players %>
+  </div>
+  <div class="field">
+    <%= f.label :requires_passwords %><br />
+    <%= f.check_box :requires_passwords %>
+  </div>
+  <div class="field">
+    <%= f.label :timer %><br />
+    <%= f.text_field :timer %>
+  </div>
+  <div class="field">
+    <%= f.label :host_time %><br />
+    <%= f.datetime_select :host_time %>
+  </div>
+  <div class="field">
+    <%= f.label :last_poll %><br />
+    <%= f.datetime_select :last_poll %>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_area :message %>
+  </div>
+  <div class="field">
+    <%= f.label :map_preview %><br />
+    <%= f.text_field :map_preview %>
+  </div>
+  <div class="field">
+    <%= f.label :map_download %><br />
+    <%= f.text_field :map_download %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

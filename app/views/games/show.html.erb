@@ -1,0 +1,85 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @game.name %>
+</p>
+
+<p>
+  <b>Server:</b>
+  <%= @game.server %>
+</p>
+
+<p>
+  <b>Port:</b>
+  <%= @game.port %>
+</p>
+
+<p>
+  <b>Status cd:</b>
+  <%= @game.status_cd %>
+</p>
+
+<p>
+  <b>Era cd:</b>
+  <%= @game.era_cd %>
+</p>
+
+<p>
+  <b>Provinces:</b>
+  <%= @game.provinces %>
+</p>
+
+<p>
+  <b>Max players:</b>
+  <%= @game.max_players %>
+</p>
+
+<p>
+  <b>Requires passwords:</b>
+  <%= @game.requires_passwords %>
+</p>
+
+<p>
+  <b>Timer:</b>
+  <%= @game.timer %>
+</p>
+
+<p>
+  <b>Turn number:</b>
+  <%= @game.turn_number %>
+</p>
+
+<p>
+  <b>Players remaining:</b>
+  <%= @game.players_remaining %>
+</p>
+
+<p>
+  <b>Host time:</b>
+  <%= @game.host_time %>
+</p>
+
+<p>
+  <b>Last poll:</b>
+  <%= @game.last_poll %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @game.message %>
+</p>
+
+<p>
+  <b>Map preview:</b>
+  <%= @game.map_preview %>
+</p>
+
+<p>
+  <b>Map download:</b>
+  <%= @game.map_download %>
+</p>
+
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
