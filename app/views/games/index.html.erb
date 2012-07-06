@@ -3,21 +3,11 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Host</th>
+    <th>Era</th>
     <th>Server</th>
     <th>Port</th>
-    <th>Status cd</th>
-    <th>Era cd</th>
-    <th>Provinces</th>
-    <th>Max players</th>
-    <th>Requires passwords</th>
-    <th>Timer</th>
     <th>Turn number</th>
-    <th>Players remaining</th>
-    <th>Host time</th>
-    <th>Last poll</th>
-    <th>Message</th>
-    <th>Map preview</th>
-    <th>Map download</th>
     <th></th>
     <th></th>
     <th></th>
@@ -26,21 +16,11 @@
 <% @games.each do |game| %>
   <tr>
     <td><%= game.name %></td>
+    <td><%= game.host_id %></td>
+    <td><%= game.era %></td>
     <td><%= game.server %></td>
     <td><%= game.port %></td>
-    <td><%= game.status_cd %></td>
-    <td><%= game.era_cd %></td>
-    <td><%= game.provinces %></td>
-    <td><%= game.max_players %></td>
-    <td><%= game.requires_passwords %></td>
-    <td><%= game.timer %></td>
     <td><%= game.turn_number %></td>
-    <td><%= game.players_remaining %></td>
-    <td><%= game.host_time %></td>
-    <td><%= game.last_poll %></td>
-    <td><%= game.message %></td>
-    <td><%= game.map_preview %></td>
-    <td><%= game.map_download %></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
     <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>

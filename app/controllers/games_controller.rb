@@ -1,7 +1,8 @@
 class GamesController < ApplicationController
-  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
   # GET /games
   # GET /games.json
+  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :game_owner, :only => [:edit, :update, :destroy]
   def index
     @games = Game.all
 
@@ -79,6 +80,14 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_url }
       format.json { head :no_content }
+    end
+  end
+
+  def game_owner()
+    @game = Game.find(params[:id])
+    if @game.host_id != current_user.id
+      flash[:notice] = "Cannot modify game"
+      redirect_to @game
     end
   end
 end
