@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
-  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :require_login
+  before_filter :player_owner, :only => [:edit, :update]
   # GET /players
   # GET /players.json
   def index
@@ -21,7 +22,7 @@ class PlayersController < ApplicationController
       format.json { render json: @player }
     end
   end
-
+=begin
   # GET /players/new
   # GET /players/new.json
   def new
@@ -33,10 +34,7 @@ class PlayersController < ApplicationController
     end
   end
 
-  # GET /players/1/edit
-  def edit
-    @player = Player.find(params[:id])
-  end
+  
 
   # POST /players
   # POST /players.json
@@ -53,7 +51,12 @@ class PlayersController < ApplicationController
       end
     end
   end
+=end
 
+  # GET /players/1/edit
+  def edit
+    @player = Player.find(params[:id])
+  end
   # PUT /players/1
   # PUT /players/1.json
   def update
@@ -69,7 +72,7 @@ class PlayersController < ApplicationController
       end
     end
   end
-
+=begin
   # DELETE /players/1
   # DELETE /players/1.json
   def destroy
@@ -79,6 +82,14 @@ class PlayersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to players_url }
       format.json { head :no_content }
+    end
+  end
+=end
+  def player_owner()
+    @player = Player.find(params[:id])
+    if @player.id != current_user.player.id
+      flash[:notice] = "Not allowed to modify others' profiles"
+      redirect_to root_url
     end
   end
 end

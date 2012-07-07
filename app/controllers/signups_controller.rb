@@ -1,6 +1,9 @@
 class SignupsController < ApplicationController
   # GET /signups
   # GET /signups.json
+  before_filter :require_login, :only => [:create, :destroy]
+  before_filter :game_owner, :only => [:destroy]
+=begin
   def index
     @signups = Signup.all
 
@@ -36,7 +39,7 @@ class SignupsController < ApplicationController
   def edit
     @signup = Signup.find(params[:id])
   end
-
+=end
   # POST /signups
   # POST /signups.json
   def create
@@ -44,15 +47,16 @@ class SignupsController < ApplicationController
 
     respond_to do |format|
       if @signup.save
-        format.html { redirect_to @signup, notice: 'Signup was successfully created.' }
+        format.html { redirect_to :back, notice: 'Signup was successfully created.' }
         format.json { render json: @signup, status: :created, location: @signup }
       else
-        format.html { render action: "new" }
+
+        format.html { redirect_to :back, notice: 'Error creating signup.' }
         format.json { render json: @signup.errors, status: :unprocessable_entity }
       end
     end
   end
-
+=begin
   # PUT /signups/1
   # PUT /signups/1.json
   def update
@@ -68,7 +72,7 @@ class SignupsController < ApplicationController
       end
     end
   end
-
+=end
   # DELETE /signups/1
   # DELETE /signups/1.json
   def destroy
@@ -76,7 +80,7 @@ class SignupsController < ApplicationController
     @signup.destroy
 
     respond_to do |format|
-      format.html { redirect_to signups_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

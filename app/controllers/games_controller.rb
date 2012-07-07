@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   # GET /games
   # GET /games.json
-  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :require_login, :only => [:new, :edit, :create, :update]
   before_filter :game_owner, :only => [:edit, :update, :destroy]
   def index
     @games = Game.all
@@ -73,7 +73,7 @@ class GamesController < ApplicationController
       end
     end
   end
-
+=begin
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy
@@ -85,7 +85,7 @@ class GamesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+=end
   def game_owner()
     @game = Game.find(params[:id])
     if @game.host_id != current_user.id
