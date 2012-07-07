@@ -1,6 +1,4 @@
 class SignupsController < ApplicationController
-  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
-  before_filter :signup_owner, :only => [:edit, :update, :destroy]
   # GET /signups
   # GET /signups.json
   def index
@@ -82,7 +80,6 @@ class SignupsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   def signup_owner()
     @signup = Signup.find(params[:id])
     if @signup.player_id != current_user.player.id

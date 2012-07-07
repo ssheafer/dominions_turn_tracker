@@ -18,7 +18,7 @@ class SignupsControllerTest < ActionController::TestCase
 
   test "should create signup" do
     assert_difference('Signup.count') do
-      post :create, signup: { game_id: @signup.game_id, nation_id: @signup.nation_id, password: @signup.password, status: @signup.status, turn: @signup.turn, user_id: @signup.user_id }
+      post :create, signup: { game_id: @signup.game_id, nation_id: @signup.nation_id, password: @signup.password, player_id: @signup.player_id, status: @signup.status }
     end
 
     assert_redirected_to signup_path(assigns(:signup))
@@ -35,7 +35,7 @@ class SignupsControllerTest < ActionController::TestCase
   end
 
   test "should update signup" do
-    put :update, id: @signup, signup: { game_id: @signup.game_id, nation_id: @signup.nation_id, password: @signup.password, status: @signup.status, turn: @signup.turn, user_id: @signup.user_id }
+    put :update, id: @signup, signup: { game_id: @signup.game_id, nation_id: @signup.nation_id, password: @signup.password, player_id: @signup.player_id, status: @signup.status }
     assert_redirected_to signup_path(assigns(:signup))
   end
 

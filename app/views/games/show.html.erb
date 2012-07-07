@@ -44,7 +44,10 @@
 
   <% @nations.each do |key, value| %>
     <tr>
-      <%= form_for(@signup) do |f| %>
+      <%= form_for @signup, :url => { :controller => :signups, :action => :create } do |f| %>
+      <%= f.hidden_field :player_id, { :value => current_user.player.id } %>
+      <%= f.hidden_field :nation_id, { :value => key }  %>
+      <%= f.hidden_field :game_id, { :value => @game.id } %>
       <td><%= value %></td>
       <td>-</td>
       <td> 
@@ -60,8 +63,7 @@
           <%= f.submit %>
         </div>
       </td>
-      <%= hidden_field_tag(:player_id, current_user.player.id) %>
-      <%= hidden_field_tag(:nation_id, key) %>
+      
       <% end %>
     </tr>
   <% end %>
