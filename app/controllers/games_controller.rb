@@ -16,6 +16,7 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @game = Game.find(params[:id])
+    @signup = Signup.new
     @signups = Signup.find_by_game_id(params[:id])
     @nations = Dom3::ConstData::NATIONS[@game.era.to_s]
     logger.debug #{@nations.inspect}"

@@ -39,22 +39,30 @@
       <th>User</th>
       <th>Password</th>
       <th>Status</th>
-      <th>Turn</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Claim Nation</th>
     </tr>
 
   <% @nations.each do |key, value| %>
     <tr>
+      <%= form_for(@signup) do |f| %>
       <td><%= value %></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>-</td>
+      <td> 
+        <%= f.label :password %><br />
+        <%= f.text_field :password %>
+      </td>
+      <td>
+        <%= f.label :status %><br />
+        <%= f.text_field :status %>
+      </td>
+      <td>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      </td>
+      <%= hidden_field_tag(:player_id, current_user.player.id) %>
+      <%= hidden_field_tag(:nation_id, key) %>
+      <% end %>
     </tr>
   <% end %>
   </table>
