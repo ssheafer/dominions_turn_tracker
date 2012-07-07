@@ -8,5 +8,5 @@ class Game < ActiveRecord::Base
   validates_presence_of :message
   has_many :signups
   belongs_to :player, :foreign_key => "host_id"
-  #validates_associated :players
+  validates_associated :signups
 end

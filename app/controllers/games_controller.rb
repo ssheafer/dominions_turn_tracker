@@ -16,7 +16,9 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @game = Game.find(params[:id])
-
+    @signups = Signup.find_by_game_id(params[:id])
+    @nations = Dom3::ConstData::NATIONS[@game.era.to_s]
+    logger.debug #{@nations.inspect}"
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @game }
@@ -86,7 +88,7 @@ class GamesController < ApplicationController
   def game_owner()
     @game = Game.find(params[:id])
     if @game.host_id != current_user.id
-      flash[:notice] = "Cannot modify game"
+      flash[:notice] = "Not allowed to modify games if you aren't the host or an admin"
       redirect_to @game
     end
   end

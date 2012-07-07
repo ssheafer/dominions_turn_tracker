@@ -1,6 +1,5 @@
 class CreateSignups < ActiveRecord::Migration
   def change
-    drop_table :signups
     create_table :signups do |t|
       t.integer :game_id
       t.integer :nation_id

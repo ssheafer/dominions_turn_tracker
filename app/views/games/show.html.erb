@@ -30,6 +30,36 @@
   <%= @game.turn_number %>
 </p>
 
+<% debug @nations %>
+  <h1>Listing signups</h1>
+
+  <table>
+    <tr>
+      <th>Nation</th>
+      <th>User</th>
+      <th>Password</th>
+      <th>Status</th>
+      <th>Turn</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @nations.each do |key, value| %>
+    <tr>
+      <td><%= value %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  <% end %>
+  </table>
+
+
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
