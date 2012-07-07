@@ -9,6 +9,10 @@
 <body>
 <% if current_user %>
   Logged in as <%= current_user.username %>.
+  <%= link_to "Overview", root_url %>.
+  <%= link_to "Profile", :controller => "players", :action => "show", :id => current_user.player.id %>
+  <%= link_to "Create Game", :controller => "games", :action => "new" %>
+  <%= link_to "Edit Profile", :controller => "players", :action => "edit", :id => current_user.player.id %>
   <%= link_to "Log out", logout_path %>
 <% else %>
   <%= link_to "Sign up", createuser_path %> or
