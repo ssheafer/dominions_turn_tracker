@@ -1,4 +1,33 @@
-<h1>Active games</h1>
+<h1>Goon Game Service Mk2: Now with more Zmey</h1>
+<h2>Pending games</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Host</th>
+    <th>Era</th>
+    <th>Server</th>
+    <th>Port</th>
+    <th>Turn number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pending.each do |game| %>
+  <tr>
+    <td><%= link_to game.name, game %></td>
+    <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>
+    <td><%= game.era %></td>
+    <td><%= game.server %></td>
+    <td><%= game.port %></td>
+    <td><%= game.turn_number %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<h2>Active games</h2>
 
 <table>
   <tr>
@@ -16,7 +45,7 @@
 <% @games.each do |game| %>
   <tr>
     <td><%= link_to game.name, game %></td>
-    <td><%= game.host_id %></td>
+    <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>
     <td><%= game.era %></td>
     <td><%= game.server %></td>
     <td><%= game.port %></td>

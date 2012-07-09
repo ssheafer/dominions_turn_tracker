@@ -8,7 +8,11 @@ Dom3::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "createuser" => "users#new", :as => "createuser"
-  resources :users
+  resources :users do
+    member do
+      get :activate
+    end
+  end
   resources :sessions
   resources :password_resets
   root :to => "home#index"

@@ -1,6 +1,18 @@
 class UserMailer < ActionMailer::Base
   default from: "GGS@scamp.me"
 
+  def activation_needed_email(user)
+    @user = user
+    @url  = "http://scamp.me:3000/users/#{user.activation_token}/activate"
+    mail(:bcc => Dom3::ConstData::ADMINS, :subject => "User Signup")
+  end
+
+  def activation_success_email(user)
+    @user = user
+    @url  = "http://scamp.me:3000/login"
+    mail(:to => user.email,
+       :subject => "Your account is now activated")
+  end
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

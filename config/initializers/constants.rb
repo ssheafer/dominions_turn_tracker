@@ -76,5 +76,10 @@ module Dom3
 					},
 			"Other" => {}
 		}
+		ADMINS = [
+			'ssheafer@gmail.com',
+			'brainwrinkle@gmail.com',
+			'ssheafer@purdue.edu'
+		]
 	end
 end
