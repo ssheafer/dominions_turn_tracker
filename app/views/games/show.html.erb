@@ -7,7 +7,7 @@
 
 <p>
   <b>Host:</b>
-  <%= @game.host_id %>
+  <td><%= link_to @game.player.user.username, :controller => "players", :action => "show", :id => @game.host_id %></td>
 </p>
 
 <p>
@@ -30,7 +30,7 @@
   <%= @game.turn_number %>
 </p>
 
-<% debug @nations %>
+
   <h1>Listing signups</h1>
 
   <table>
@@ -39,33 +39,26 @@
       <th>User</th>
       <th>Password</th>
       <th>Status</th>
-      <th>Claim Nation</th>
+      <th>Turn?</th>
+      <th>Local Time</th>
     </tr>
-
-  <% @nations.each do |key, value| %>
-    <tr>
-      <%= form_for @signup, :url => { :controller => :signups, :action => :create } do |f| %>
-      <%= f.hidden_field :player_id, { :value => current_user.player.id } %>
-      <%= f.hidden_field :nation_id, { :value => key }  %>
-      <%= f.hidden_field :game_id, { :value => @game.id } %>
-      <td><%= value %></td>
-      <td>-</td>
-      <td> 
-        <%= f.label :password %><br />
-        <%= f.text_field :password %>
-      </td>
-      <td>
-        <%= f.label :status %><br />
-        <%= f.text_field :status %>
-      </td>
-      <td>
-        <div class="actions">
-          <%= f.submit %>
-        </div>
-      </td>
-      
-      <% end %>
-    </tr>
+  <% @signupsByNation.each do |nid, signup| %>
+      <tr>
+        <td><%= @nations[nid] %></td>
+        <td><%= link_to signup.player.user.username, :controller => "players", :action => "show", :id => signup.player_id %></td>
+        <td> 
+          -
+        </td>
+        <td>
+          <%= signup.status %>
+        </td>
+        <td>
+          Not implemented
+        </td>
+        <td>
+          Not implemented
+        </td>
+      </tr>
   <% end %>
   </table>
 

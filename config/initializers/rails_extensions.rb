@@ -1,5 +1,5 @@
-require 'rails_extensions/user_logger'
+require 'rails_extensions/game_update'
 
 ActionController::Base.class_eval do
-  include ActionController::GameUpdate
+  include ActionControllerExtra::GameUpdate
 end

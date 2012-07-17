@@ -10,14 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.hidden_field :host_id, { :value => current_user.player.id } %>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %> (required) <br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :host_id %><br />
-    <%= f.number_field :host_id %>
   </div>
   <div class="field">
     <%= f.label :era %><br />
@@ -36,11 +32,22 @@
     <%= f.number_field :port %>
   </div>
   <div class="field">
-    <%= f.label :turn_number %><br />
-    <%= f.number_field :turn_number %>
+    <%= f.label :max_players %><br />
+    <%= f.number_field :max_players %>
   </div>
   <div class="field">
-    <%= f.label :message %><br />
+    <%= f.label :provinces %><br />
+    <%= f.number_field :provinces %>
+  <div class="field">
+    <%= f.label :map_preview %><br />
+    <%= f.text_field :map_preview %>
+  </div>
+  <div class="field">
+    <%= f.label :map_download %><br />
+    <%= f.text_field :map_download %>
+  </div>
+  <div class="field">
+    <%= f.label :message %> (required) <br />
     <%= f.text_field :message %>
   </div>
   <div class="actions">

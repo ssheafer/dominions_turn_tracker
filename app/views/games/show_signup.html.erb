@@ -1,0 +1,98 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @game.name %>
+</p>
+
+<p>
+  <b>Host:</b>
+  <td><%= link_to @game.player.user.username, :controller => "players", :action => "show", :id => @game.host_id %></td>
+</p>
+
+<p>
+  <b>Era:</b>
+  <%= @game.era %>
+</p>
+
+<p>
+  <b>Server:</b>
+  <%= @game.server %>
+</p>
+
+<p>
+  <b>Port:</b>
+  <%= @game.port %>
+</p>
+
+<p>
+  <b>Turn number:</b>
+  <%= @game.turn_number %>
+</p>
+
+
+<% debug @nations %>
+  <h1>Listing signups</h1>
+
+  <table>
+    <tr>
+      <th>Nation</th>
+      <th>User</th>
+      <th>Password</th>
+      <th>Status</th>
+      <th>Claim Nation</th>
+    </tr>
+  <% @nationIDs.each do |nid| %>
+    <% if @openNations.key?(nid) %>
+      <% value = @openNations[nid] %>
+      <% key = nid %>
+      <tr>
+        <%= form_for @signup, :url => { :controller => :signups, :action => :create } do |f| %>
+        <%= f.hidden_field :player_id, { :value => current_user.player.id } %>
+        <%= f.hidden_field :nation_id, { :value => key }  %>
+        <%= f.hidden_field :game_id, { :value => @game.id } %>
+        <td><%= value %></td>
+        <td>-</td>
+        <td> 
+          <%= f.label :password %><br />
+          <%= f.text_field :password %>
+        </td>
+        <td>
+          -
+        </td>
+        <td>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        </td>
+        
+        <% end %>
+      </tr>
+    <% else %>
+      <% signup = @signupsByNation[nid] %>
+      <tr>
+        <td><%= @nations[nid] %></td>
+        <td><%= link_to signup.player.user.username, :controller => "players", :action => "show", :id => signup.player_id %></td>
+        <td> 
+          -
+        </td>
+        <td>
+          <%= signup.status %>
+        </td>
+        <td>
+          <% if @game.host_id == current_user.id || current_user.admin %>
+          <%= button_to 'Delete', { :controller => "signups", :action => "destroy", :id => signup.id} , :method => 'delete', :confirm => 'Are you sure?' %>
+          <% else %>
+            Taken
+          <% end %>
+        </td>
+        
+      </tr>
+    <% end %>
+  <% end %>
+  </table>
+
+
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>

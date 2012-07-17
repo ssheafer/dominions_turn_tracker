@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	after_create :create_links
 	authenticates_with_sorcery!
   
-	attr_accessible :username, :email, :password, :password_confirmation
+	attr_accessible :username, :email, :password, :password_confirmation, :admin
 
 	validates_confirmation_of :password
 	validates_presence_of :password, :on => :create

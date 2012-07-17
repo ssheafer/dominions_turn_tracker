@@ -4,12 +4,7 @@ class GamesController < ApplicationController
   before_filter :require_login, :only => [:new, :edit, :create, :update]
   before_filter :game_owner, :only => [:edit, :update, :destroy]
   def index
-    @games = Game.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @games }
-    end
+    redirect_to root_url
   end
 
   # GET /games/1
@@ -17,13 +12,23 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @signup = Signup.new
-    @signups = Signup.find_by_game_id(params[:id])
-    @nations = Dom3::ConstData::NATIONS[@game.era.to_s]
-    logger.debug #{@nations.inspect}"
+    @signups = Signup.find_all_by_game_id(params[:id])
+    @signupsIDs = @signups.map {|x| x.nation_id}
+    @signupsByNation = Hash[@signups.map {|x| [x.nation_id, x]}]
+
+    @nations = Dom3::ConstData::NATIONS[@game.era.to_s].clone
+    @nationIDs = @nations.keys
+    @openNations = @nations.clone.delete_if {|key, value| @signupsIDs.include?(key)}
+    if @game.status.to_s == 'Pending'
+      view = 'show_signup'
+    else
+      view = 'show'
+    end
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {render view}
       format.json { render json: @game }
     end
+
   end
 
   # GET /games/new
@@ -88,7 +93,7 @@ class GamesController < ApplicationController
 =end
   def game_owner()
     @game = Game.find(params[:id])
-    if @game.host_id != current_user.id
+    if @game.host_id != current_user.id && !current_user.admin
       flash[:notice] = "Not allowed to modify games if you aren't the host or an admin"
       redirect_to @game
     end

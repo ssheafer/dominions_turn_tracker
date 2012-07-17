@@ -2,7 +2,7 @@ class SignupsController < ApplicationController
   # GET /signups
   # GET /signups.json
   before_filter :require_login, :only => [:create, :destroy]
-  before_filter :game_owner, :only => [:destroy]
+  before_filter :signup_owner, :only => [:destroy]
 =begin
   def index
     @signups = Signup.all
@@ -86,7 +86,7 @@ class SignupsController < ApplicationController
   end
   def signup_owner()
     @signup = Signup.find(params[:id])
-    if @signup.player_id != current_user.player.id
+    if @signup.player_id != current_user.player.id && !current_user.admin
       flash[:notice] = "Not allowed to modify others' signups"
       redirect_to root_url
     end

@@ -5,4 +5,6 @@ class Signup < ActiveRecord::Base
   validates_presence_of :player_id
   belongs_to :game
   belongs_to :player
+  validates :nation_id, :uniqueness => {:scope => :game_id,
+   :message => "each nation can only have 1 signup per game"}
 end

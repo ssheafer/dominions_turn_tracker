@@ -6,6 +6,9 @@ class Game < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_presence_of :status_cd
   validates_presence_of :message
+  validates :max_players, :numericality => { :only_integer => true, :greater_than => 0 }
+  validates :provinces, :numericality => { :only_integer => true, :greater_than => 0 }
+  validates :port, :numericality => { :only_integer => true, :greater_than => 0 }
   has_many :signups
   belongs_to :player, :foreign_key => "host_id"
   validates_associated :signups
