@@ -1,5 +1,9 @@
 Dom3::Application.routes.draw do
-  resources :players
+  resources :players do
+    member do
+      put 'updateAdmin'
+    end
+  end
 
   resources :signups
 

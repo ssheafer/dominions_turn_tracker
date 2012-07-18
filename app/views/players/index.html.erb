@@ -22,7 +22,7 @@
 
 <% @players.each do |player| %>
   <tr>
-    <td><%= player.user_id %></td>
+    <td><%= link_to player.user.username, :controller => "players", :action => "show", :id => player.id %></td>
     <td><%= player.forum_id %></td>
     <td><%= player.avatar %></td>
     <td><%= player.aim %></td>
@@ -35,9 +35,6 @@
     <td><%= player.other %></td>
     <td><%= player.timezone %></td>
     <td><%= player.email_pref %></td>
-    <td><%= link_to 'Show', player %></td>
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
-    <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

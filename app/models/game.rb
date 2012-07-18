@@ -13,7 +13,10 @@ class Game < ActiveRecord::Base
   belongs_to :player, :foreign_key => "host_id"
   validates_associated :signups
 
-  def self.test
-    puts 'testing runner'
+  def allow_signup?
+    @game = self
+    @signups = Signup.find_all_by_game_id(@game.id)
+    @signups.delete_if {|x| x.player_id < 0}
+    if @signups.length < @game.max_players && @game.status.to_s == 'Pending' then return true else return false end
   end
 end

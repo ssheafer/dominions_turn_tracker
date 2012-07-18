@@ -20,7 +20,7 @@ class GamesController < ApplicationController
     @nationIDs = @nations.keys
     @signupsIDs.each {|id| if !@nationIDs.include?(id) then @nationIDs.push(id) end}
     @openNations = @nations.clone.delete_if {|key, value| @signupsIDs.include?(key)}
-    if @game.status.to_s == 'Pending'
+    if @game.allow_signup?
       view = 'show_signup'
     else
       view = 'show'

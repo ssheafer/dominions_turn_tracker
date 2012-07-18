@@ -65,6 +65,16 @@
   <%= @player.email_pref %>
 </p>
 
+<% if current_user.admin %>
+  <%= form_for @user, :url => { :controller => :players, :action => :updateAdmin } do |f| %>
+  <%= f.label :admin %><br />
+  <%= f.check_box :admin %> 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>

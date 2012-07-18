@@ -13,6 +13,7 @@
   <%= link_to "Profile", :controller => "players", :action => "show", :id => current_user.player.id %>
   <%= link_to "Create Game", :controller => "games", :action => "new" %>
   <%= link_to "Edit Profile", :controller => "players", :action => "edit", :id => current_user.player.id %>
+  <%= link_to "All Users", :controller => "players", :action => "index" %>
   <%= link_to "Log out", logout_path %>
 <% else %>
   <%= link_to "Sign up", createuser_path %> or

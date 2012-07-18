@@ -53,10 +53,17 @@
           <%= signup.status %>
         </td>
         <td>
-          Not implemented
+          -
         </td>
         <td>
-          Not implemented
+          -
+        </td>
+        <td>
+          <% if @game.host_id == current_user.id || current_user.admin %>
+          <%= button_to 'Delete', { :controller => "signups", :action => "destroy", :id => signup.id} , :method => 'delete', :confirm => 'Are you sure?' %>
+          <% else %>
+            Taken
+          <% end %>
         </td>
       </tr>
   <% end %>

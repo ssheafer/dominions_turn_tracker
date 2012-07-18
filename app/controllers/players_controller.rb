@@ -16,7 +16,7 @@ class PlayersController < ApplicationController
   # GET /players/1.json
   def show
     @player = Player.find(params[:id])
-
+    @user = @player.user
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @player }
@@ -68,6 +68,21 @@ class PlayersController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.json { render json: @player.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def updateAdmin
+    @player = Player.find(params[:id])
+    @user = @player.user
+    if !current_user.admin then return redirect_to @player, notice: 'Admin status not changed' end
+    respond_to do |format|
+    if @user.update_attributes(params[:user])
+        format.html { redirect_to @player, notice: 'Player was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @player, notice: 'Admin status not changed' }
         format.json { render json: @player.errors, status: :unprocessable_entity }
       end
     end
