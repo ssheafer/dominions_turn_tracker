@@ -33,7 +33,9 @@
 
 <% debug @nations %>
   <h1>Listing signups</h1>
-
+  <p>
+    <b><%= if @game.requires_passwords then 'Passwords are required' end %></b>
+  </p>
   <table>
     <tr>
       <th>Nation</th>
@@ -71,10 +73,14 @@
     <% else %>
       <% signup = @signupsByNation[nid] %>
       <tr>
-        <td><%= @nations[nid] %></td>
+        <td><%= if @nations.has_key?(nid) then @nations[nid] else nid end %></td>
         <td><%= link_to signup.player.user.username, :controller => "players", :action => "show", :id => signup.player_id %></td>
         <td> 
-          -
+          <% if @game.host_id == current_user.id || current_user.admin %>
+            <%= signup.password %>
+          <% else %>
+            Password hidden
+          <% end %>
         </td>
         <td>
           <%= signup.status %>
@@ -90,6 +96,28 @@
       </tr>
     <% end %>
   <% end %>
+  <tr>
+        <%= form_for @signup, :url => { :controller => :signups, :action => :create } do |f| %>
+        <%= f.hidden_field :player_id, { :value => current_user.player.id } %>
+        <%= f.hidden_field :game_id, { :value => @game.id } %>
+        <td><%= f.label :nation_id %><br />
+          <%= f.number_field :nation_id %></td>
+        <td>-</td>
+        <td> 
+          <%= f.label :password %><br />
+          <%= f.text_field :password %>
+        </td>
+        <td>
+          -
+        </td>
+        <td>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        </td>
+        
+        <% end %>
+    </tr>
   </table>
 
 

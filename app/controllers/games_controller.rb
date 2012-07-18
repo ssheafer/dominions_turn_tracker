@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   # GET /games
   # GET /games.json
-  before_filter :require_login, :only => [:new, :edit, :create, :update]
+  before_filter :require_login
   before_filter :game_owner, :only => [:edit, :update, :destroy]
   def index
     redirect_to root_url
@@ -15,9 +15,10 @@ class GamesController < ApplicationController
     @signups = Signup.find_all_by_game_id(params[:id])
     @signupsIDs = @signups.map {|x| x.nation_id}
     @signupsByNation = Hash[@signups.map {|x| [x.nation_id, x]}]
-
+    puts @signupsByNation.inspect
     @nations = Dom3::ConstData::NATIONS[@game.era.to_s].clone
     @nationIDs = @nations.keys
+    @signupsIDs.each {|id| if !@nationIDs.include?(id) then @nationIDs.push(id) end}
     @openNations = @nations.clone.delete_if {|key, value| @signupsIDs.include?(key)}
     if @game.status.to_s == 'Pending'
       view = 'show_signup'
