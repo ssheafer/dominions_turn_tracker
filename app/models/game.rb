@@ -12,4 +12,8 @@ class Game < ActiveRecord::Base
   has_many :signups
   belongs_to :player, :foreign_key => "host_id"
   validates_associated :signups
+
+  def self.test
+    puts 'testing runner'
+  end
 end

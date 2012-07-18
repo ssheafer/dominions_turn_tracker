@@ -35,7 +35,7 @@ module ActionControllerExtra
 						@submitted = @data[109, 95]
 						@connected = @data[204 ,95]
 						@turnNumber = @data[299]
-=begin	
+
 						puts @messageData.inspect
 						puts @gameName
 						puts @era
@@ -44,19 +44,22 @@ module ActionControllerExtra
 						#puts submitted.inspect
 						#puts connected.inspect
 						puts @turnNumber
-=end
+
 					end
 				end
 				@s.close # Close the socket when done
+			end
+			def self.doQuery
+				a = Thread.new{ @server = ActionControllerExtra::GameUpdate::ServerUpdate.new; @server.queryServer('proactiveapathy.com', 7333)}
+				b = Thread.new{ @server = ActionControllerExtra::GameUpdate::ServerUpdate.new; @server.queryServer('proactiveapathy.com', 7319)}
+				c = Thread.new{ @server = ActionControllerExtra::GameUpdate::ServerUpdate.new; @server.queryServer('proactiveapathy.com', 7284)}
+				a.join
+				b.join
+				c.join
 			end
 		end
 	end
 end
 
-a = Thread.new{ @server = ActionControllerExtra::GameUpdate::ServerUpdate.new; @server.queryServer('proactiveapathy.com', 7333)}
-b = Thread.new{ @server = ActionControllerExtra::GameUpdate::ServerUpdate.new; @server.queryServer('proactiveapathy.com', 7319)}
-c = Thread.new{ @server = ActionControllerExtra::GameUpdate::ServerUpdate.new; @server.queryServer('proactiveapathy.com', 7284)}
-a.join
-b.join
-c.join
+
 
