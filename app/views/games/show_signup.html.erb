@@ -86,7 +86,7 @@
           <%= signup.status %>
         </td>
         <td>
-          <% if @game.host_id == current_user.id || current_user.admin %>
+          <% if @game.host_id == current_user.player.id || current_user.admin || signup.player_id == current_user.player.id %>
           <%= button_to 'Delete', { :controller => "signups", :action => "destroy", :id => signup.id} , :method => 'delete', :confirm => 'Are you sure?' %>
           <% else %>
             Taken

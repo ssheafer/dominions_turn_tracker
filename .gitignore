@@ -2,5 +2,8 @@
 db/*.sqlite3
 log/*.log
 tmp/
+/public/system/*
+/public/assets/*
 .DS_Store
 recaptcha.rb
+restart.txt

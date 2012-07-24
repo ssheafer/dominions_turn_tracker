@@ -47,11 +47,12 @@ class SignupsController < ApplicationController
 
     respond_to do |format|
       if @signup.save
-        format.html { redirect_to :back, notice: 'Signup was successfully created.' }
+        flash[:notice] = 'Signup was successfully created.'
+        format.html { redirect_to :controller => "games", :action => "show", :id => @signup.game_id }
         format.json { render json: @signup, status: :created, location: @signup }
       else
-
-        format.html { redirect_to :back, notice: 'Error creating signup.' }
+        flash[:notice] = 'Error creating signup.'
+        format.html { redirect_to :controller => "games", :action => "show", :id => @signup.game_id }
         format.json { render json: @signup.errors, status: :unprocessable_entity }
       end
     end
@@ -77,10 +78,12 @@ class SignupsController < ApplicationController
   # DELETE /signups/1.json
   def destroy
     @signup = Signup.find(params[:id])
+    @game_id = @signup.game_id
     @signup.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      flash[:notice] = 'Signup deleted'
+      format.html { redirect_to :controller => "games", :action => "show", :id => @game_id}
       format.json { head :no_content }
     end
   end
