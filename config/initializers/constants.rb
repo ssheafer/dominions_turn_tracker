@@ -77,9 +77,7 @@ module Dom3
 			"Other" => {}
 		}
 		ADMINS = [
-			'ssheafer@gmail.com',
-			'brainwrinkle@gmail.com',
-			'ssheafer@purdue.edu'
+			'brainwrinkle@gmail.com'
 		]
 	end
 end
