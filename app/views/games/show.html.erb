@@ -31,9 +31,13 @@
 </p>
 <p>
   <b>Time to Host:</b>
+  <% if @game.host_time %>
   <% @hours = (@game.host_time / (60 * 60 * 1000)).floor %>
   <% @minutes = (@game.host_time / (60 * 1000) - @hours * 60).floor %>
   <%= "#{@hours}h #{@minutes}m"%>
+  <% else %>
+    00h00m
+  <% end %>
 </p>
 
   <h1>Listing signups</h1>

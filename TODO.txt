@@ -1,4 +1,3 @@
-Listing of users (players)
-Add a way for administrators to make other users admins
-Send email to all admins
+SA Profile link for users for signup
+Notify about verification on signup
 
