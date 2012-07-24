@@ -27,7 +27,7 @@ class Game < ActiveRecord::Base
   end
   def updateGame()
     begin
-    s = TCPSocket.open(self.server, self.port)
+      s = TCPSocket.open(self.server, self.port)
       s.write("\x66\x48\x01\x00\x00\x00\x03")
       result = nil
       status = Timeout::timeout(5) {
@@ -56,7 +56,7 @@ class Game < ActiveRecord::Base
           submitted = data[109, 95]
           connected = data[204 ,95]
           turnNumber = data[299]
-          if turnNumber > self.turn_number then self.sendUpdateEmail()
+          if turnNumber > self.turn_number then self.sendUpdateEmail() end
           self.turn_number = turnNumber
           self.host_time = tth
           self.last_poll = Time.now
@@ -81,7 +81,6 @@ class Game < ActiveRecord::Base
       s.close # Close the socket when done 
     rescue
       return false
-    ensure
       
     end
     return true
