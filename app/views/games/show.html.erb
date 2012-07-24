@@ -31,7 +31,7 @@
 </p>
 <p>
   <b>Time to Host:</b>
-  <% if @game.host_time %>
+  <% if not @game.host_time.nil? %>
   <% @hours = (@game.host_time / (60 * 60 * 1000)).floor %>
   <% @minutes = (@game.host_time / (60 * 1000) - @hours * 60).floor %>
   <%= "#{@hours}h #{@minutes}m"%>
