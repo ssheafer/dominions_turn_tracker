@@ -56,7 +56,9 @@ class Game < ActiveRecord::Base
           submitted = data[109, 95]
           connected = data[204 ,95]
           turnNumber = data[299]
-          if turnNumber > self.turn_number then self.sendUpdateEmail() end
+          if !self.turn_number.nil?
+            if turnNumber > self.turn_number then self.sendUpdateEmail() end
+          end
           self.turn_number = turnNumber
           self.host_time = tth
           self.last_poll = Time.now
@@ -79,7 +81,9 @@ class Game < ActiveRecord::Base
         end
       end
       s.close # Close the socket when done 
-    rescue
+    rescue Exception => e  
+      puts e.message  
+      puts e.backtrace.inspect 
       return false
       
     end
