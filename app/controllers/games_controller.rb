@@ -15,7 +15,7 @@ class GamesController < ApplicationController
     @signups = Signup.find_all_by_game_id(params[:id])
     @signupsIDs = @signups.map {|x| x.nation_id}
     @signupsByNation = Hash[@signups.map {|x| [x.nation_id, x]}]
-    puts @signupsByNation.inspect
+    #puts @signupsByNation.inspect
     @nations = Dom3::ConstData::NATIONS[@game.era.to_s].clone
     @nationIDs = @nations.keys
     @signupsIDs.each {|id| if !@nationIDs.include?(id) then @nationIDs.push(id) end}

@@ -1,5 +1,7 @@
 class Signup < ActiveRecord::Base
-  attr_accessible :game_id, :nation_id, :password, :status, :player_id
+  attr_accessible :game_id, :nation_id, :password, :status, :player_id, :status_cd, :turn, :turn_cd
+  as_enum :status, :Alive => 0, :AI => 1, :Defeated => 3, :Defeated_This_Turn => 4
+  as_enum :turn, :Outstanding => 0, :Submitted => 1
   validates_presence_of :game_id
   validates_presence_of :nation_id
   validates_presence_of :player_id

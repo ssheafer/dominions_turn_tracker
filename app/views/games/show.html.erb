@@ -29,7 +29,12 @@
   <b>Turn number:</b>
   <%= @game.turn_number %>
 </p>
-
+<p>
+  <b>Time to Host:</b>
+  <% @hours = (@game.host_time / (60 * 60 * 1000)).floor %>
+  <% @minutes = (@game.host_time / (60 * 1000) - @hours * 60).floor %>
+  <%= "#{@hours}h #{@minutes}m"%>
+</p>
 
   <h1>Listing signups</h1>
 
@@ -37,23 +42,20 @@
     <tr>
       <th>Nation</th>
       <th>User</th>
-      <th>Password</th>
       <th>Status</th>
       <th>Turn?</th>
       <th>Local Time</th>
+      <th>Action</th>
     </tr>
   <% @signupsByNation.each do |nid, signup| %>
       <tr>
         <td><%= @nations[nid] %></td>
         <td><%= link_to signup.player.user.username, :controller => "players", :action => "show", :id => signup.player_id %></td>
-        <td> 
-          -
-        </td>
         <td>
           <%= signup.status %>
         </td>
         <td>
-          -
+          <%= signup.turn %>
         </td>
         <td>
           -

@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 every 1.minute do
-   #runner "Game.test"
-   command "date >> /home/ssheafer/time.txt"
+   #runner "Game.updateRecords"
+   #command "date >> /home/ssheafer/time.txt"
 end
