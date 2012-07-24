@@ -76,8 +76,8 @@
         <td><%= if @nations.has_key?(nid) then @nations[nid] else nid end %></td>
         <td><%= link_to signup.player.user.username, :controller => "players", :action => "show", :id => signup.player_id %></td>
         <td> 
-          <% if @game.host_id == current_user.id || current_user.admin %>
-            <%= signup.password %>
+          <% if @game.host_id == current_user.player.id || current_user.admin || signup.player_id == current_user.player.id%>
+            <%= signup.password.tr!("A-Za-z", "N-ZA-Mn-za-m") %>
           <% else %>
             Password hidden
           <% end %>

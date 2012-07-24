@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
   as_enum :era, :EA => 0, :MA => 1, :LA => 3, :Other => 4
   as_enum :status, :Pending => 0, :Active => 1, :Complete => 2
   validates_presence_of :name
-  validates_uniqueness_of :name
+  #validates_uniqueness_of :name
   validates_presence_of :status_cd
   validates_presence_of :message
   validates :max_players, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0 }
