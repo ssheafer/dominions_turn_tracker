@@ -4,7 +4,9 @@ class UserMailer < ActionMailer::Base
   def activation_needed_email(user)
     @user = user
     @url  = "http://www.brainwrinkle.net/users/#{user.activation_token}/activate"
-    mail(:bcc => Dom3::ConstData::ADMINS, :subject => "User Signup")
+    @admins = User.where(:admin => true).map {|x| x.email}
+    if @admins.length < 1 then @admins = Dom3::ConstData::ADMINS end
+    mail(:bcc => @admins, :subject => "User Signup")
   end
 
   def activation_success_email(user)
