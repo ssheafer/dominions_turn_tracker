@@ -6,6 +6,7 @@ gem 'rails', '3.2.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'mysql2'
 gem 'simple_enum'
 gem 'sorcery'
 gem "recaptcha", :require => "recaptcha/rails"

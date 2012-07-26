@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Host</th>
+    <th>Era</th>
+    <th>Server</th>
+    <th>Port</th>
+    <th>Max Players</th>
+    <th>Remaining</th>
+  </tr>
+
+<% @pending.each do |game| %>
+  <tr>
+    <td><%= link_to game.name, game %></td>
+    <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>
+    <td><%= game.era %></td>
+    <td><%= game.server %></td>
+    <td><%= game.port %></td>
+    <td><%= game.max_players %></td>
+    <td><%= game.max_players - game.num_signups %></td>
+  </tr>
+<% end %>
+</table>

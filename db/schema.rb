@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724020159) do
+ActiveRecord::Schema.define(:version => 20120725220950) do
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20120724020159) do
     t.string   "timer"
     t.integer  "turn_number"
     t.integer  "players_remaining"
-    t.datetime "host_time"
+    t.integer  "host_time"
     t.datetime "last_poll"
     t.text     "message"
     t.string   "map_preview"

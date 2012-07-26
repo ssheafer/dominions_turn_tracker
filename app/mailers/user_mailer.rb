@@ -24,4 +24,13 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Your password reset request")
   end
+
+  def turn_email(game)
+    playerIDs = game.signups.uniq {|s| s.player_id}
+    users = Player.find(playerIDs).map {|p| p.user}
+    users.each do |user|
+      mail(:to => user.email,
+          :subject => "Turn #{game.turn_number} in #{game.name}")
+    end
+  end
 end

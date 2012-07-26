@@ -1,3 +1,4 @@
 SA Profile link for users for signup
 Notify about verification on signup
-
+show password required
+show tth on main page

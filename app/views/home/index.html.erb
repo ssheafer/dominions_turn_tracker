@@ -1,111 +1,47 @@
 <h1>Goon Game Service Mk2: Now with more Zmey</h1>
-<h2>Your Active Games</h2>
-<h2>Your Pending Games</h2>
-<h2>Your Hosted Games</h2>
-<h2>Pending games</h2>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Host</th>
-    <th>Era</th>
-    <th>Server</th>
-    <th>Port</th>
-    <th>Turn number</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if current_user %>
 
-<% @pending.each do |game| %>
-  <tr>
-    <td><%= link_to game.name, game %></td>
-    <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>
-    <td><%= game.era %></td>
-    <td><%= game.server %></td>
-    <td><%= game.port %></td>
-    <td><%= game.turn_number %></td>
-  </tr>
+<h2>Your Active Games</h2>
+<%= render :partial => "active", :locals => { :data => @youractive } %>
+<h2>Your Pending Games</h2>
+<%= render :partial => "pending", :locals => { :data => @yourpending } %>
+<h2>Your Hosted Games</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Host</th>
+        <th>Era</th>
+        <th>Server</th>
+        <th>Port</th>
+        <th>Max Players</th>
+        <th>Status</th>
+      </tr>
+
+    <% @hosted.each do |game| %>
+      <tr>
+        <td><%= link_to game.name, game %></td>
+        <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>
+        <td><%= game.era %></td>
+        <td><%= game.server %></td>
+        <td><%= game.port %></td>
+        <td><%= game.max_players %></td>
+        <td><%= game.status %></td>
+      </tr>
+    <% end %>
+    </table>
+
 <% end %>
-</table>
+<br />
+<h2>Pending games</h2>
+<%= render :partial => "pending", :locals => { :data => @pending } %>
 
 <br />
 
 <h2>Active games</h2>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Host</th>
-    <th>Era</th>
-    <th>Server</th>
-    <th>Port</th>
-    <th>Turn number</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @games.each do |game| %>
-  <tr>
-    <td><%= link_to game.name, game %></td>
-    <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>
-    <td><%= game.era %></td>
-    <td><%= game.server %></td>
-    <td><%= game.port %></td>
-    <td><%= game.turn_number %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => "active", :locals => { :data => @games } %>
 
 <br />
 
 
-<!--
-<h1>Listing games</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Server</th>
-    <th>Port</th>
-    <th>Status cd</th>
-    <th>Era cd</th>
-    <th>Provinces</th>
-    <th>Max players</th>
-    <th>Requires passwords</th>
-    <th>Timer</th>
-    <th>Turn number</th>
-    <th>Players remaining</th>
-    <th>Host time</th>
-    <th>Last poll</th>
-    <th>Message</th>
-    <th>Map preview</th>
-    <th>Map download</th>
-  </tr>
-
-<% @games.each do |game| %>
-  <tr>
-    <td><%= link_to game.name, game %></td>
-    <td><%= game.server %></td>
-    <td><%= game.port %></td>
-    <td><%= game.status_cd %></td>
-    <td><%= game.era_cd %></td>
-    <td><%= game.provinces %></td>
-    <td><%= game.max_players %></td>
-    <td><%= game.requires_passwords %></td>
-    <td><%= game.timer %></td>
-    <td><%= game.turn_number %></td>
-    <td><%= game.players_remaining %></td>
-    <td><%= game.host_time %></td>
-    <td><%= game.last_poll %></td>
-    <td><%= game.message %></td>
-    <td><%= game.map_preview %></td>
-    <td><%= game.map_download %></td>
-    
-  </tr>
-<% end %>
-</table>
-
-<br />
--->
 

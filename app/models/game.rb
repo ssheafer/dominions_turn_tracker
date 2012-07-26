@@ -11,13 +11,25 @@ class Game < ActiveRecord::Base
   validates :port, :numericality => { :only_integer => true, :greater_than => 0 }
   has_many :signups
   belongs_to :player, :foreign_key => "host_id"
-  validates_associated :signups
+  #validates_associated :signups
+  after_create :init
+
+  def init
+    self.turn_number ||= 0
+  end
+
 
   def allow_signup?
-    @game = self
-    @signups = Signup.find_all_by_game_id(@game.id)
-    @signups.delete_if {|x| x.player_id < 0}
-    if @signups.length < @game.max_players && @game.status.to_s == 'Pending' then return true else return false end
+    game = self
+    signups = Signup.find_all_by_game_id(game.id)
+    signups.delete_if {|x| x.player_id < 0}
+    if signups.length < game.max_players && game.status.to_s == 'Pending' then return true else return false end
+  end
+  def num_signups
+    game = self
+    signups = Signup.find_all_by_game_id(game.id)
+    signups.delete_if {|x| x.player_id < 0}
+    return signups.length
   end
   def self.updateRecords
     @games = Game.find :all, :conditions => {:status_cd => Game.Active}
@@ -56,12 +68,12 @@ class Game < ActiveRecord::Base
           submitted = data[109, 95]
           connected = data[204 ,95]
           turnNumber = data[299]
-          if !self.turn_number.nil?
-            if turnNumber > self.turn_number then self.sendUpdateEmail() end
-          end
-          self.turn_number = turnNumber
           self.host_time = tth
           self.last_poll = Time.now
+          if !self.turn_number.nil?
+            if turnNumber > self.turn_number then self.turn_number = turnNumber; self.sendUpdateEmail() end
+          end
+          self.turn_number = turnNumber
           signups = Signup.find_all_by_game_id(self.id)
           signupsByNation = Hash[signups.map {|x| [x.nation_id, x]}]
           signupsByNation.each do |id, value| 
@@ -91,6 +103,6 @@ class Game < ActiveRecord::Base
 
   end
   def sendUpdateEmail()
-
+    UserMailer.turn_email(self)
   end
 end

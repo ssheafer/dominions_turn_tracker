@@ -1,0 +1,5 @@
+A new turn has been generated in <%= game.name %>.  
+
+As of this email, there are <% @hours = (game.host_time / (60 * 60 * 1000)).floor %>
+      <% @minutes = (game.host_time / (60 * 1000) - @hours * 60).floor %>
+      <%= "#{@hours}h #{@minutes}m"%> remaining.
