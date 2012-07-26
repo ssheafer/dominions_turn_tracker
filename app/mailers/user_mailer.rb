@@ -1,15 +1,15 @@
 class UserMailer < ActionMailer::Base
-  default from: "GGS@scamp.me"
+  default from: "GGS@brainwrinkle.net"
 
   def activation_needed_email(user)
     @user = user
-    @url  = "http://scamp.me:3000/users/#{user.activation_token}/activate"
+    @url  = "http://www.brainwrinkle.net/users/#{user.activation_token}/activate"
     mail(:bcc => Dom3::ConstData::ADMINS, :subject => "User Signup")
   end
 
   def activation_success_email(user)
     @user = user
-    @url  = "http://scamp.me:3000/login"
+    @url  = "http://www.brainwrinkle.net/login"
     mail(:to => user.email,
        :subject => "Your account is now activated")
   end
@@ -20,17 +20,20 @@ class UserMailer < ActionMailer::Base
   #
  def reset_password_email(user)
     @user = user
-    @url  = "http://scamp.me:3000/password_resets/#{user.reset_password_token}/edit"
+    @url  = "http://www.brainwrinkle.net/password_resets/#{user.reset_password_token}/edit"
     mail(:to => user.email,
          :subject => "Your password reset request")
   end
 
   def turn_email(game)
-    playerIDs = game.signups.uniq {|s| s.player_id}
-    users = Player.find(playerIDs).map {|p| p.user}
-    users.each do |user|
-      mail(:to => user.email,
-          :subject => "Turn #{game.turn_number} in #{game.name}")
+    @game = game
+    playerIDs = game.signups.map{|s| s.player_id}.uniq
+    users = Player.find(playerIDs).reject{|p| !p.email_pref }.map{|p| p.user}
+    if users.length > 0
+      users.each do |user|
+        mail(:to => user.email,
+            :subject => "[Dom3 GGS] New Turn Alert : #{game.name} : Turn #{game.turn_number}")
+      end
     end
   end
 end

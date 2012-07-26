@@ -13,7 +13,7 @@ class Signup < ActiveRecord::Base
   validates :nation_id, :numericality => { :only_integer => true, :greater_than => -1, :less_than => 100 }
   validates :player_id, :numericality => { :only_integer => true, :greater_than => -1 }
   validates :password, :presence => true, :if => :passwordRequired?
-  after_initialize :init
+  after_create :init
 
   def init
     self.status = :Alive
