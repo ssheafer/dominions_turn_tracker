@@ -76,9 +76,9 @@ class Game < ActiveRecord::Base
           self.turn_number = turnNumber
           signups = Signup.find_all_by_game_id(self.id)
           signupsByNation = Hash[signups.map {|x| [x.nation_id, x]}]
-          signupsByNation.each do |id, value| 
-          
-            status = nationStatus[id] 
+          signupsByNation.each do |id, value|
+
+            status = nationStatus[id]
             turn = submitted[id]
             if status == 1 then signupsByNation[id].status = "Alive" end
             if status == 2 then signupsByNation[id].status = "AI" end
@@ -92,12 +92,12 @@ class Game < ActiveRecord::Base
 
         end
       end
-      s.close # Close the socket when done 
-    rescue Exception => e  
-      puts e.message  
-      puts e.backtrace.inspect 
+      s.close # Close the socket when done
+    rescue Exception => e
+      puts e.message
+      puts e.backtrace.inspect
       return false
-      
+
     end
     return true
 

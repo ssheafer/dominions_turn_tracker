@@ -9,6 +9,16 @@
       </ul>
     </div>
   <% end %>
+
+<p>
+It is advisable to keep your username here the same as on the SA forums but is not required. Eventually avatars will be implemented.
+</p>
+
+<br />
+<p>
+ *Note* As we transition over from the old GGS, if you can provide a link to your profile on matryx.org I can immediately approve you. Currently all registrations are manually approved. I require your SA Forum ID to verify goondom, and will activate you if you have posted in one of the Dom3 threads. Please provide a game key to verify that you didn't pirate the game, or send a picture of you with the game to an admin.  If that doesn't work for you, we can figure something out. Hit us up on #dom3goons on synirc.  
+</p>
+
   <div class="field">
     <%= f.label :username %>
     <%= f.text_field :username %>
@@ -24,6 +34,18 @@
   <div class="field">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+    <%= f.label 'SomethingAwful ID' %>
+    <%= f.text_field :sa_id %>
+  </div>
+  <div class="field">
+    <%= f.label :game_key %>
+    <%= f.text_field :game_key %>
+  </div>
+  <div class="field">
+    <%= f.label :matryx_link %>
+    <%= f.text_field :matryx_link %>
   </div>
   <div class="field">
     <%= recaptcha_tags %>

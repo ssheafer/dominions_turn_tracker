@@ -27,17 +27,19 @@
         00h00m
       <% end %>
     </td>
-    <% slots = game.signups.where(:player_id => current_user.player.id) %>
-    <% if slots.length > 0 %>
-      <% condition = false %>
-      <% slots.each {|s| if s.turn_cd == 0 || s.turn_cd.nil? then condition = true end} %>
-      <% if condition then status = 'Outstanding'; style = 'background-color:pink;' else status = 'Submitted'; style = 'background-color:lightgreen;' end %>
-    <% else %>
-      <% status = 'N/A'; style='' %>
+    <% if current_user %>
+      <% slots = game.signups.where(:player_id => current_user.player.id) %>
+      <% if slots.length > 0 %>
+        <% condition = false %>
+        <% slots.each {|s| if s.turn_cd == 0 || s.turn_cd.nil? then condition = true end} %>
+        <% if condition then status = 'Outstanding'; style = 'background-color:pink;' else status = 'Submitted'; style = 'background-color:lightgreen;' end %>
+      <% else %>
+        <% status = 'N/A'; style='' %>
+      <% end %>
+      <td style=<%=style%>>
+        <%= status %>
+      </td>
     <% end %>
-    <td style=<%=style%>>
-      <%= status %>
-    </td>
   </tr>
 <% end %>
 </table>

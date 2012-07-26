@@ -11,14 +11,14 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url  = "http://www.brainwrinkle.net/login"
     mail(:to => user.email,
-       :subject => "Your account is now activated")
+         :subject => "Your account is now activated")
   end
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
   #   en.user_mailer.reset_password_email.subject
   #
- def reset_password_email(user)
+  def reset_password_email(user)
     @user = user
     @url  = "http://www.brainwrinkle.net/password_resets/#{user.reset_password_token}/edit"
     mail(:to => user.email,
@@ -32,7 +32,7 @@ class UserMailer < ActionMailer::Base
     if users.length > 0
       users.each do |user|
         mail(:to => user.email,
-            :subject => "[Dom3 GGS] New Turn Alert : #{game.name} : Turn #{game.turn_number}")
+             :subject => "[Dom3 GGS] New Turn Alert : #{game.name} : Turn #{game.turn_number}")
       end
     end
   end

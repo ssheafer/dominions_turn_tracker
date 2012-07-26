@@ -8,7 +8,8 @@ class Signup < ActiveRecord::Base
   belongs_to :game
   belongs_to :player
   validates :nation_id, :uniqueness => {:scope => :game_id,
-   :message => "each nation can only have 1 signup per game"}
+                                        :message => "each nation can only have 1 signup per game"}
+
   validates :game_id, :numericality => { :only_integer => true}
   validates :nation_id, :numericality => { :only_integer => true, :greater_than => -1, :less_than => 100 }
   validates :player_id, :numericality => { :only_integer => true, :greater_than => -1 }
@@ -21,6 +22,6 @@ class Signup < ActiveRecord::Base
   end
 
   def passwordRequired?
-  	self.game.requires_passwords
+    self.game.requires_passwords
   end
 end

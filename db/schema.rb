@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725220950) do
+ActiveRecord::Schema.define(:version => 20120726061403) do
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -82,6 +82,9 @@ ActiveRecord::Schema.define(:version => 20120725220950) do
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
+    t.string   "game_key"
+    t.string   "matryx_link"
+    t.string   "sa_id"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
