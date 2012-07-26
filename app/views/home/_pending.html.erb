@@ -9,7 +9,7 @@
     <th>Remaining</th>
   </tr>
 
-<% @pending.each do |game| %>
+<% data.each do |game| %>
   <tr>
     <td><%= link_to game.name, game %></td>
     <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>

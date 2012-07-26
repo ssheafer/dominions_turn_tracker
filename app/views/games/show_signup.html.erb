@@ -1,34 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @game.name %>
-</p>
-
-<p>
-  <b>Host:</b>
-  <td><%= link_to @game.player.user.username, :controller => "players", :action => "show", :id => @game.host_id %></td>
-</p>
-
-<p>
-  <b>Era:</b>
-  <%= @game.era %>
-</p>
-
-<p>
-  <b>Server:</b>
-  <%= @game.server %>
-</p>
-
-<p>
-  <b>Port:</b>
-  <%= @game.port %>
-</p>
-
-<p>
-  <b>Turn number:</b>
-  <%= @game.turn_number %>
-</p>
+<%= render :partial => "gameinfo", :locals => { :data => @game } %>
 
 
 <% debug @nations %>

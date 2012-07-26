@@ -1,0 +1,43 @@
+<p>
+  <b>Name:</b>
+  <%= data.name %>
+</p>
+
+<p>
+  <b>Host:</b>
+  <td><%= link_to data.player.user.username, :controller => "players", :action => "show", :id => data.host_id %></td>
+</p>
+
+<p>
+  <b>Era:</b>
+  <%= data.era %>
+</p>
+
+<p>
+  <b>Server:</b>
+  <%= data.server %>
+</p>
+
+<p>
+  <b>Port:</b>
+  <%= data.port %>
+</p>
+
+<p>
+  <b>Max Players:</b>
+  <%= data.max_players %>
+</p>
+
+<p>
+  <b>Provinces:</b>
+  <%= data.provinces %>
+</p>
+
+<p>
+  <b>Message from host:</b>
+  <%= data.message %>
+</p>
+
+<p>
+  <a href="<%= data.map_download %>">Map Download</a>
+</p>

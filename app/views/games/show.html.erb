@@ -1,34 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @game.name %>
-</p>
-
-<p>
-  <b>Host:</b>
-  <td><%= link_to @game.player.user.username, :controller => "players", :action => "show", :id => @game.host_id %></td>
-</p>
-
-<p>
-  <b>Era:</b>
-  <%= @game.era %>
-</p>
-
-<p>
-  <b>Server:</b>
-  <%= @game.server %>
-</p>
-
-<p>
-  <b>Port:</b>
-  <%= @game.port %>
-</p>
+<%= render :partial => "gameinfo", :locals => { :data => @game } %>
 
 <p>
   <b>Turn number:</b>
   <%= @game.turn_number %>
 </p>
+
 <p>
   <b>Time to Host:</b>
   <% if !@game.host_time.nil? %>
@@ -38,6 +16,10 @@
   <% else %>
     00h00m
   <% end %>
+</p>
+<p>
+  <b>Last updated:</b>
+  <%= @game.last_poll %>
 </p>
 
   <h1>Listing signups</h1>
@@ -63,10 +45,12 @@
             Password hidden
           <% end %>
         </td>
-        <td>
+        
+        <td >
           <%= signup.status %>
         </td>
-        <td>
+        <% if signup.turn_cd == 0 || signup.turn_cd.nil? then style = 'background-color:pink;' else style = 'background-color:lightgreen;' end %>
+        <td style=<%=style%>>
           <%= signup.turn %>
         </td>
         <td>

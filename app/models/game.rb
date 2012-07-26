@@ -103,6 +103,6 @@ class Game < ActiveRecord::Base
 
   end
   def sendUpdateEmail()
-    UserMailer.turn_email(self)
+    UserMailer.turn_email(self).deliver
   end
 end

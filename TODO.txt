@@ -1,4 +1,5 @@
-SA Profile link for users for signup
-Notify about verification on signup
-show password required
-show tth on main page
+Show message on show page (done)
+Show Last updated on page (done)
+Show provinces (done)
+Color oustanding on show page
+Show map download/preview (done)
