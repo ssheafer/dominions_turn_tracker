@@ -103,6 +103,12 @@ class Game < ActiveRecord::Base
 
   end
   def sendUpdateEmail()
-    UserMailer.turn_email(self).deliver
+    playerIDs = self.signups.map{|s| s.player_id}.uniq
+    users = Player.find(playerIDs).reject{|p| !p.email_pref }.map{|p| p.user}
+    if users.length > 0
+      users.each do |user|
+        UserMailer.turn_email(self, user).deliver
+      end
+    end
   end
 end
