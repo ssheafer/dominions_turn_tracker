@@ -1,5 +1,5 @@
 class Signup < ActiveRecord::Base
-  attr_accessible :game_id, :nation_id, :password, :status, :player_id, :status_cd, :turn, :turn_cd
+  attr_accessible :game_id, :nation_id, :password, :status, :player_id, :status_cd, :turn, :turn_cd, :username
   as_enum :status, :Alive => 0, :AI => 1, :Defeated => 3, :Defeated_This_Turn => 4
   as_enum :turn, :Outstanding => 0, :Submitted => 1
   validates_presence_of :game_id
@@ -23,5 +23,21 @@ class Signup < ActiveRecord::Base
 
   def passwordRequired?
     self.game.requires_passwords
+  end
+
+  def username
+    if self.player.nil?
+      return ''
+    else
+      return self.player.user.username
+    end
+
+  end
+
+  def username=(name)
+    user = User.find_by_username(name)
+    if !user.nil?
+      self.player_id = user.player.id
+    end
   end
 end

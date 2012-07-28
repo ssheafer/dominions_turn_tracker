@@ -2,14 +2,26 @@
 
 <%= render :partial => "gameinfo", :locals => { :data => @game } %>
 
+<% if @signup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@signup.errors.count, "error") %> prohibited this game from being saved:</h2>
 
-<% debug @nations %>
+      <ul>
+      <% @signup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <h1>Listing signups</h1>
   <p style="color:red;">
     <b><%= if @game.requires_passwords then 'Passwords are required' end %></b>
   </p>
   <table>
     <tr>
+      <% if @game.host_id == current_user.player.id || current_user.admin %>
+      <th>User</th>
+      <% end %>
       <th>Nation</th>
       <th>User</th>
       <th>Password</th>
@@ -25,6 +37,12 @@
         <%= f.hidden_field :player_id, { :value => current_user.player.id } %>
         <%= f.hidden_field :nation_id, { :value => key }  %>
         <%= f.hidden_field :game_id, { :value => @game.id } %>
+        <% if @game.host_id == current_user.player.id || current_user.admin %>
+        <td>
+          <%= f.label :username %><br />
+          <%= f.text_field :username %>
+        </td>
+        <% end %>
         <td><%= value %></td>
         <td>-</td>
         <td> 
@@ -45,6 +63,7 @@
     <% else %>
       <% signup = @signupsByNation[nid] %>
       <tr>
+        <td></td>
         <td><%= if @nations.has_key?(nid) then @nations[nid] else nid end %></td>
         <td><%= link_to signup.player.user.username, :controller => "players", :action => "show", :id => signup.player_id %></td>
         <td> 
