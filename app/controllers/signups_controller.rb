@@ -89,7 +89,7 @@ class SignupsController < ApplicationController
   end
   def signup_owner()
     @signup = Signup.find(params[:id])
-    if @signup.player_id != current_user.player.id && !current_user.admin
+    if @signup.player_id != current_user.player.id && !current_user.admin && current_user.player.id != @signup.game.player.id
       flash[:notice] = "Not allowed to modify others' signups"
       redirect_to root_url
     end
