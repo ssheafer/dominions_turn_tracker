@@ -28,6 +28,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def turn_email(game, user)
+    @game = game
     mail(:to => user.email,
          :subject => "[Dom3 GGS] New Turn Alert : #{game.name} : Turn #{game.turn_number}")
   end
