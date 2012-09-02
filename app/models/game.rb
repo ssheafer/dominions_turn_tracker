@@ -82,8 +82,8 @@ class Game < ActiveRecord::Base
             turn = submitted[id]
             if status == 1 then signupsByNation[id].status = "Alive" end
             if status == 2 then signupsByNation[id].status = "AI" end
-            if status == 0xfe then signupsByNation[id].status = "Defeated" end
-            if status == 0xff then signupsByNation[id].status = "Defeated_This_Turn" end
+            if status == 0xfe then signupsByNation[id].status = "Defeated_This_Turn" end
+            if status == 0xff then signupsByNation[id].status = "Defeated" end
             signupsByNation[id].turn_cd = turn
             signupsByNation[id].save
           end
