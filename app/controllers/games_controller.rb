@@ -16,7 +16,11 @@ class GamesController < ApplicationController
     @signupsIDs = @signups.map {|x| x.nation_id}
     @signupsByNation = Hash[@signups.map {|x| [x.nation_id, x]}]
     #puts @signupsByNation.inspect
-    @nations = Dom3::ConstData::NATIONS[@game.era.to_s].clone
+    if @game.version == 3
+      @nations = Dom3::ConstData::NATIONS[@game.era.to_s].clone
+    else
+      @nations = Dom4::ConstData::NATIONS[@game.era.to_s].clone
+    end
     @nationIDs = @nations.keys
     @signupsIDs.each {|id| if !@nationIDs.include?(id) then @nationIDs.push(id) end}
     @openNations = @nations.clone.delete_if {|key, value| @signupsIDs.include?(key)}

@@ -23,6 +23,10 @@
     <%= select(:game, :status, Game.statuses.keys) %>
   </div>
   <div class="field">
+    <%= f.label :version %><br />
+    <%= select(:game, :version, Game.versions.keys) %>
+  </div>
+  <div class="field">
     <%= f.label :server %><br />
     <%= f.text_field :server %>
   </div>
