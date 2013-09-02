@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726061403) do
+ActiveRecord::Schema.define(:version => 20130902221758) do
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -30,10 +30,13 @@ ActiveRecord::Schema.define(:version => 20120726061403) do
     t.text     "message"
     t.string   "map_preview"
     t.string   "map_download"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "host_id"
+    t.integer  "version",            :default => 3, :null => false
   end
+
+  add_index "games", ["version"], :name => "index_games_on_version"
 
   create_table "players", :force => true do |t|
     t.integer  "user_id"
