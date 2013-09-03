@@ -11,7 +11,6 @@ class Game < ActiveRecord::Base
   validates :max_players, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0 }
   validates :provinces, :numericality => { :only_integer => true, :greater_than => 0 }
   validates :port, :numericality => { :only_integer => true, :greater_than => 0 }
-  validates :version, :numericality => { :only_integer => true, :greater_than => 0 }
   has_many :signups
   belongs_to :player, :foreign_key => "host_id"
   #validates_associated :signups
@@ -90,12 +89,11 @@ class Game < ActiveRecord::Base
 
             status = nationStatus[id]
             turn = submitted[id]
-            signupsByNation[id].turn_cd = turn
             if status == 1 then signupsByNation[id].status = "Alive" end
-            if status == 2 then signupsByNation[id].status = "AI"; signupsByNation[id].turn_cd = 1 end
-            if status == 0xfe then signupsByNation[id].status = "Defeated_This_Turn" end
-            if status == 0xff then signupsByNation[id].status = "Defeated"; signupsByNation[id].turn_cd = 1 end
-            
+            if status == 2 then signupsByNation[id].status = "AI" end
+            if status == 0xfe then signupsByNation[id].status = "Defeated" end
+            if status == 0xff then signupsByNation[id].status = "Defeated_This_Turn" end
+            signupsByNation[id].turn_cd = turn
             signupsByNation[id].save
           end
 
