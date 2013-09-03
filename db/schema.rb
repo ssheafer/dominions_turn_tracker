@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(:version => 20130902221758) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.integer  "host_id"
-    t.integer  "version",            :default => 3, :null => false
     t.integer  "version_cd",         :default => 3, :null => false
   end
 
