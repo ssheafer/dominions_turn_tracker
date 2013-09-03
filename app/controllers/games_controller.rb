@@ -16,7 +16,7 @@ class GamesController < ApplicationController
     @signupsIDs = @signups.map {|x| x.nation_id}
     @signupsByNation = Hash[@signups.map {|x| [x.nation_id, x]}]
     #puts @signupsByNation.inspect
-    if @game.version == 3
+    if @game.version_cd == 3
       @nations = Dom3::ConstData::NATIONS[@game.era.to_s].clone
     else
       @nations = Dom4::ConstData::NATIONS[@game.era.to_s].clone
