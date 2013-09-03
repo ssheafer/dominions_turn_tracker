@@ -1,47 +1,50 @@
-<h1>Goon Game Service Mk2: Now with more Zmey</h1>
-<% if current_user %>
+<div class="maindiv complement-5">
+    <h1>Goon Game Service: Dominions 4 Edition</h1>
+    <% if current_user %>
 
-<h2>Your Active Games</h2>
-<%= render :partial => "active", :locals => { :data => @youractive } %>
-<h2>Your Pending Games</h2>
-<%= render :partial => "pending", :locals => { :data => @yourpending } %>
-<h2>Your Hosted Games</h2>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Host</th>
-        <th>Era</th>
-        <th>Server</th>
-        <th>Port</th>
-        <th>Max Players</th>
-        <th>Status</th>
-      </tr>
+    <h2>Your Active Games</h2>
+    <%= render :partial => "active", :locals => { :data => @youractive } %>
+    <h2>Your Pending Games</h2>
+    <%= render :partial => "pending", :locals => { :data => @yourpending } %>
+    <h2>Your Hosted Games</h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Host</th>
+            <th>Era</th>
+            <th>Server</th>
+            <th>Port</th>
+            <th>Max Players</th>
+            <th>Status</th>
+          </tr>
 
-    <% @hosted.each do |game| %>
-      <tr>
-        <td><%= link_to game.name, game %></td>
-        <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>
-        <td><%= game.era %></td>
-        <td><%= game.server %></td>
-        <td><%= game.port %></td>
-        <td><%= game.max_players %></td>
-        <td><%= game.status %></td>
-      </tr>
+        <% @hosted.each do |game| %>
+          <tr>
+            <td><%= link_to game.name, game %></td>
+            <td><%= link_to game.player.user.username, :controller => "players", :action => "show", :id => game.host_id %></td>
+            <td><%= game.era %></td>
+            <td><%= game.server %></td>
+            <td><%= game.port %></td>
+            <td><%= game.max_players %></td>
+            <td><%= game.status %></td>
+          </tr>
+        <% end %>
+        </table>
+
     <% end %>
-    </table>
-
-<% end %>
+</div>
 <br />
-<h2>Pending games</h2>
-<%= render :partial => "pending", :locals => { :data => @pending } %>
+<div class="maindiv complement-5">
+    <h2>Pending games</h2>
+    <%= render :partial => "pending", :locals => { :data => @pending } %>
 
-<br />
+    <br />
 
-<h2>Active games</h2>
+    <h2>Active games</h2>
 
-<%= render :partial => "active", :locals => { :data => @games } %>
+    <%= render :partial => "active", :locals => { :data => @games } %>
 
-<br />
-
+    <br />
+</div>
 
 
