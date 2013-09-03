@@ -40,7 +40,7 @@ class Game < ActiveRecord::Base
     threads.each {|thread| thread.join()}
   end
   def updateGame()
-    if self.version == 3
+    if self.version == :Dom3
       self.updateGame3()
     else
       self.updateGame4()
