@@ -37,8 +37,6 @@ ActiveRecord::Schema.define(:version => 20130902221758) do
     t.integer  "version_cd",         :default => 3, :null => false
   end
 
-  add_index "games", ["version"], :name => "index_games_on_version"
-
   create_table "players", :force => true do |t|
     t.integer  "user_id"
     t.integer  "forum_id"
