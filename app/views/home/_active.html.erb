@@ -31,7 +31,7 @@
       <% slots = game.signups.where(:player_id => current_user.player.id) %>
       <% if slots.length > 0 %>
         <% condition = false %>
-        <% slots.each {|s| if s.turn_cd == 0 || s.turn_cd.nil? then condition = true end} %>
+        <% slots.each {|s| if (s.turn_cd == 0 || s.turn_cd.nil?) && s.status_cd == 0 then condition = true end} %>
         <% if condition then status = 'Outstanding'; style = 'background-color:OrangeRed;' else status = 'Submitted'; style = 'background-color:lightgreen;' end %>
       <% else %>
         <% status = 'N/A'; style='' %>
