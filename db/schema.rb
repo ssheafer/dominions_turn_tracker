@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130902221758) do
     t.datetime "updated_at",                        :null => false
     t.integer  "host_id"
     t.integer  "version",            :default => 3, :null => false
+    t.integer  "version_cd",         :default => 3, :null => false
   end
 
   add_index "games", ["version"], :name => "index_games_on_version"
