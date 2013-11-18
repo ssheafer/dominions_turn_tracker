@@ -9,4 +9,5 @@ recaptcha.rb
 restart.txt
 database.yml
 secret_token.rb
+*.lock
 
