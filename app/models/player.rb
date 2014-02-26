@@ -4,6 +4,6 @@ class Player < ActiveRecord::Base
   after_create :init
 
   def init
-  	self.email_pref = false
+  	self.email_pref = true
   end
 end

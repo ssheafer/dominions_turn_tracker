@@ -24,7 +24,7 @@
   </div>
   <div class="field">
     <%= f.label :version %><br />
-    <%= select(:game, :version, Game.versions.keys) %>
+    <%= select :game, :version, Game.versions.keys, :selected => 'Dom4' %>
   </div>
   <div class="field">
     <%= f.label :server %><br />

@@ -1,5 +1,8 @@
 <div class="maindiv complement-5">
-    <h1>Goon Game Service: Dominions 4 Edition</h1>
+    <h1>Dominions 4 Turn Tracker</h1>
+    <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
     <% if current_user %>
 
     <h2>Your Active Games</h2>

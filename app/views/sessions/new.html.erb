@@ -1,7 +1,10 @@
 <%= form_tag sessions_path do %>
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
   <div class="field">
-    <%= label_tag :username %>
-    <%= text_field_tag :username, params[:username] %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email] %>
   </div>
   <div class="field">
     <%= label_tag :password %>

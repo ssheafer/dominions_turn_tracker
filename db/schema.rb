@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902221758) do
+ActiveRecord::Schema.define(:version => 20140226030917) do
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20130902221758) do
 
   create_table "players", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "forum_id"
+    t.string   "forum_id"
     t.string   "avatar"
     t.string   "aim"
     t.string   "icq"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20130902221758) do
     t.string   "steam"
     t.string   "msn_messenger"
     t.string   "other"
-    t.integer  "timezone"
+    t.string   "timezone"
     t.boolean  "email_pref"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false

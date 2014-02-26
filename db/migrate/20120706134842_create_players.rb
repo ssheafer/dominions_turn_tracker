@@ -2,7 +2,7 @@ class CreatePlayers < ActiveRecord::Migration
   def change
     create_table :players do |t|
       t.integer :user_id
-      t.integer :forum_id
+      t.string :forum_id
       t.string :avatar
       t.string :aim
       t.string :icq
@@ -12,7 +12,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :steam
       t.string :msn_messenger
       t.string :other
-      t.integer :timezone
+      t.string :timezone
       t.boolean :email_pref
 
       t.timestamps

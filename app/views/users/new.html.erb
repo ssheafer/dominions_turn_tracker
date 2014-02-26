@@ -10,15 +10,6 @@
     </div>
   <% end %>
 
-<p>
-It is advisable to keep your username here the same as on the SA forums but is not required. Eventually avatars will be implemented.
-</p>
-
-<br />
-<p>
- *Note* Currently all registrations are manually approved. Post in one of the Dominions SA threads to verify goondom, and include a link to your Desura profile to show you bought the game. If that doesn't work for you, we can figure something out. Hit us up on #dom4goons on synirc.  
-</p>
-
   <div class="field">
     <%= f.label :username %>
     <%= f.text_field :username %>
@@ -34,14 +25,6 @@ It is advisable to keep your username here the same as on the SA forums but is n
   <div class="field">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="field">
-    <%= f.label 'SomethingAwful ID' %>
-    <%= f.text_field :sa_id %>
-  </div>
-  <div class="field">
-    <%= label_tag 'matryx_link', 'Desura Profile Link' %>
-    <%= f.text_field :matryx_link %>
   </div>
   <div class="field">
     <%= recaptcha_tags %>
