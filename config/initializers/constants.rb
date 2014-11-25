@@ -188,7 +188,8 @@ module Dom4
 					83 => "Atlantis",
 					84 => "R'lyeh",
 					85 => "Pelagia",
-					86 => "Oceania"
+					86 => "Oceania",
+					31 => "Xibalba"
 					},
 
 			"MA"=> {33 => "Arcoscephale",
@@ -217,7 +218,9 @@ module Dom4
 					87 => "Atlantis",
 					88 => "R'lyeh",
 					89 => "Pelagia",
-					90 => "Oceania"
+					90 => "Oceania",
+					57 => "Nazca",
+					58 => "Xibalba"
 					},
 
 			"LA"=> {60 => "Arcoscephale",
@@ -241,7 +244,8 @@ module Dom4
 					79 => "Gath",
 					80 => "Ragha",
 					91 => "Atlantis",
-					92 => "R'lyeh"
+					92 => "R'lyeh",
+					81 => "Xibalba"
 					},
 			"Other" => {
 					5 => "EA Arcoscephale",
@@ -320,7 +324,12 @@ module Dom4
 					79 => "LA Gath",
 					80 => "LA Ragha",
 					91 => "LA Atlantis",
-					92 => "LA R'lyeh"
+					92 => "LA R'lyeh",
+					58 => "MA Xibalba",
+					57 => "MA Nazca",
+					81 => "LA Xibalba",
+					31 => "EA Xibalba"
+
 			}
 		}
 		ADMINS = [
