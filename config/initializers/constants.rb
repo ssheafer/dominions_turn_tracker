@@ -228,8 +228,8 @@ module Dom4
 					65 => "Marignon",
 					66 => "Mictlan",
 					67 => "T'ien Ch'i",
-					68 => "Jomon",
-					69 => "Agartha",
+					69 => "Jomon",
+					70 => "Agartha",
 					71 => "Abysia",
 					72 => "Caelum",
 					73 => "C'tis",
@@ -239,6 +239,7 @@ module Dom4
 					77 => "Bogarus",
 					78 => "Patala",
 					79 => "Gath",
+					80 => "Ragha",
 					91 => "Atlantis",
 					92 => "R'lyeh"
 					},
@@ -306,8 +307,8 @@ module Dom4
 					65 => "LA Marignon",
 					66 => "LA Mictlan",
 					67 => "LA T'ien Ch'i",
-					68 => "LA Jomon",
-					69 => "LA Agartha",
+					69 => "LA Jomon",
+					70 => "LA Agartha",
 					71 => "LA Abysia",
 					72 => "LA Caelum",
 					73 => "LA C'tis",
@@ -317,6 +318,7 @@ module Dom4
 					77 => "LA Bogarus",
 					78 => "LA Patala",
 					79 => "LA Gath",
+					80 => "LA Ragha",
 					91 => "LA Atlantis",
 					92 => "LA R'lyeh"
 			}
