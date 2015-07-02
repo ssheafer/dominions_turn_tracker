@@ -175,7 +175,7 @@ class Game < ActiveRecord::Base
     return true
   end
   def sendUpdateEmail()
-    playerIDs = self.signups.map{|s| s.player_id}.uniq
+    playerIDs = self.signups.reject{|s| !(s.status.eql? "Alive")}.map{|s| s.player_id}.uniq
     users = Player.find(playerIDs).reject{|p| !p.email_pref }.map{|p| p.user}
     if users.length > 0
       users.each do |user|
