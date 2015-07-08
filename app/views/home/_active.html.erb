@@ -30,10 +30,10 @@
     <% if current_user %>
       <% slots = game.signups.where(:player_id => current_user.player.id) %>
       <% if slots.length > 0 %>
-        <% if signup.status_cd == 0 %>
-            <% if (signup.turn_cd == 0 || signup.turn_cd.nil?) %>
+        <% if slots[0].status_cd == 0 %>
+            <% if (slots[0].turn_cd == 0 || slots[0].turn_cd.nil?) %>
                 <%= status = 'Outstanding'; style = 'background-color:OrangeRed;' %>
-            <% elsif (signup.turn_cd == 1)%>
+            <% elsif (slots[0].turn_cd == 1)%>
                 <%= status = 'Partial'; style = 'background-color:Gold' %>
             <% else %>
                 <%= status = 'Submitted'; style = 'background-color:lightgreen;' %>
