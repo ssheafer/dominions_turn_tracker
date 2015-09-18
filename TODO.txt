@@ -3,3 +3,4 @@ Show Last updated on page (done)
 Show provinces (done)
 Color oustanding on show page
 Show map download/preview (done)
+Tie in dom4gameserver
