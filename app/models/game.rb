@@ -125,10 +125,11 @@ class Game < ActiveRecord::Base
           puts "Error in response"
         else
           # see http://www.cs.helsinki.fi/u/aitakang/dom3_serverformat_notes
+          num_nations = 250
           data = result[10..-1]
           uncompressed_data = Zlib::Inflate.inflate(data)
           format_string = 'CCCCCCZ*CCCCCCVC'
-          format_string += 'C'*600
+          format_string += 'C'*num_nations*3
           format_string += 'VVC'
           data = uncompressed_data.unpack(format_string)
           messageData = data[0,5]
@@ -137,9 +138,9 @@ class Game < ActiveRecord::Base
           #data[12] is a constant 0x2d
           tth = data[13]
           #data[14] is a constant 0x00
-          nationStatus = data[15, 200]
-          submitted = data[215, 200]
-          connected = data[415 ,200]
+          nationStatus = data[15, num_nations]
+          submitted = data[15+num_nations, num_nations]
+          connected = data[15+(2*num_nations), num_nations]
           turnNumber = data[-3]
           self.host_time = tth
           self.last_poll = Time.now
@@ -155,8 +156,8 @@ class Game < ActiveRecord::Base
             turn = submitted[id]
             if status == 1 then signupsByNation[id].status = "Alive" end
             if status == 2 then signupsByNation[id].status = "AI" end
-            if status == 0xfe then signupsByNation[id].status = "Defeated" end
-            if status == 0xff then signupsByNation[id].status = "Defeated_This_Turn" end
+            if status == 0xfe then signupsByNation[id].status = "Defeated_This_Turn" end
+            if status == 0xff then signupsByNation[id].status = "Defeated" end
             signupsByNation[id].turn_cd = turn
             signupsByNation[id].save
           end
